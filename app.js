@@ -8,7 +8,6 @@ const button = document.querySelector("#exchange_btn");
 
 const BASE_URL = "https://hexarate.paikama.co/api/rates/latest/";
 
-// Populate dropdowns
 for (let code in countryList) {
     let optionFrom = document.createElement("option");
     optionFrom.value = code;
@@ -21,7 +20,6 @@ for (let code in countryList) {
     selectTo.append(optionTo);
 }
 
-// Update flags
 function updateFlags() {
     imgFrom.src = `https://flagsapi.com/${countryList[selectFrom.value]}/flat/64.png`;
     imgTo.src = `https://flagsapi.com/${countryList[selectTo.value]}/flat/64.png`;
@@ -30,7 +28,6 @@ function updateFlags() {
 selectFrom.addEventListener("change", updateFlags);
 selectTo.addEventListener("change", updateFlags);
 
-// Conversion function
 async function convertCurrency() {
     let from = selectFrom.value;
     let to = selectTo.value;
@@ -53,18 +50,15 @@ async function convertCurrency() {
     }
 }
 
-// Button click
 button.addEventListener("click", (e) => {
     e.preventDefault();
     convertCurrency();
 });
 
-// Allow Enter key to convert
 input.addEventListener("keyup", (e) => {
     if (e.key === "Enter") convertCurrency();
 });
 
-// On page load
 window.addEventListener("load", () => {
     selectFrom.value = "USD";
     selectTo.value = "INR";
